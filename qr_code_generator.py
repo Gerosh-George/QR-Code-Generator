@@ -6,7 +6,7 @@ import qrcode as qr
 
 import sys
 
-
+# class that instanstiates an image and converts qrcode image into qpixmap object
 class ImageGenerator(qr.image.base.BaseImage):
     
     def __init__(self,border,width,box_size):
@@ -37,7 +37,7 @@ class ImageGenerator(qr.image.base.BaseImage):
             self.box_size, self.box_size,
             QtCore.Qt.darkMagenta)
 
-
+# the main class that sets the properties of the GUI application
 class GUIWindow(QMainWindow):
     
     def __init__(self):
@@ -79,7 +79,7 @@ class GUIWindow(QMainWindow):
         
         self.image=None
         
-        
+    # function that takes in the text entered in the edit label and generates qr code
     def textHandler(self):
         
         text =self.edit.text()        
@@ -90,6 +90,7 @@ class GUIWindow(QMainWindow):
         self.image=QPixmap.toImage(qr_image)
         self.label.setPixmap(qr_image)
     
+    # function to copy the qr code image to the clipboard when user clicks the button
     def copy(self):
         if(self.edit.text() and self.image):             
             QApplication.clipboard().setImage(self.image)
